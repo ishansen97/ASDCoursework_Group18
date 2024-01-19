@@ -125,4 +125,3 @@ public:
 		return calculateBalanceFromStore();
 	}
 };
-

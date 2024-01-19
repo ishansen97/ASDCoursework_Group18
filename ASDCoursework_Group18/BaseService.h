@@ -10,10 +10,7 @@ protected:
 	DataStore* store;
 
 public:
-	BaseService()
-	{
-		store = DataStore::createStore();
-	}
+	BaseService() { store = DataStore::createStore(); }
 
 	map<string, int> getAccountTypes() { return store->getAccountTypes(); }
 	vector<T> getItems() {}
@@ -78,4 +75,3 @@ public:
 	Category* getCategory(string catName) { return store->getCategory(catName); }
 	bool isCategoryAvailable(string catName) { return store->isCategoryAvailable(catName); }
 };
-

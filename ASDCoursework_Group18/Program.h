@@ -186,7 +186,7 @@ private:
 
 	static void editTransaction() {
 		int id = -1, newAmount = -1;
-		string strAmount, newNote, expenseOrIncome;
+		string strAmount, newNote, recurringInput;
 
 		while (isInvalidNumber(id) || !isValidTransaction(id))
 		{
@@ -205,29 +205,25 @@ private:
 		cout << "Enter new amount (Press ENTER to skip):";
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		getline(cin, strAmount);
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 		cout << "Enter new note (Press ENTER to skip):";
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		getline(cin, newNote);
-
-		cout << "Enter expense/Income state (0 for expense, 1 for income) (Press ENTER to skip):";
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		getline(cin, expenseOrIncome);
 
 		cout << "Recurring? (Enter 1 for Recurring, else 0)  (Press ENTER to skip):";
+		getline(cin, recurringInput);
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		getline(cin, newNote);
 
 		// setting new values
 		if (!strAmount.empty()) {
 			transaction->setAmount(stoi(strAmount));
 		}
 		if (!newNote.empty()) {
-			transaction->setNote(transaction->getNote());
+			transaction->setNote(newNote);
 		}
-		if (!expenseOrIncome.empty()) {
-			transaction->setTransactionType(stoi(expenseOrIncome));
-		}
+		if (!recurringInput.empty())
+			transaction->setRecurring(stoi(recurringInput));
 
 		transaction->printDetails();
 	}

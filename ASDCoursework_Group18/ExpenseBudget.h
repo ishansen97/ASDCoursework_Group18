@@ -14,4 +14,3 @@ public:
 	string getCategoryName() { return categoryName; }
 	CategoryExpenseSummary getExpenseSummary() { return expenseSummary; }
 };
-

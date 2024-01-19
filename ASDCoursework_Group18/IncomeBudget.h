@@ -13,4 +13,3 @@ public:
 	string getCategoryName() { return categoryName; }
 	double getIncomeAmount() { return incomeAmount; }
 };
-

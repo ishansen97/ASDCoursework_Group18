@@ -15,7 +15,6 @@ private:
 	map<int, Transaction*> transactions;
 	map<string, int> accountTypes;
 	static DataStore* storeInstance;
-
 	// private constructor
 	DataStore(DataStore&) {}
 	DataStore()

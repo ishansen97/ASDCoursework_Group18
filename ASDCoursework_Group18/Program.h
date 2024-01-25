@@ -319,9 +319,7 @@ private:
 
 			expenseCategory->setBudget(budget);
 		}
-
 		cout << "Budgets have been set." << endl;
-
 	}
 #pragma endregion
 

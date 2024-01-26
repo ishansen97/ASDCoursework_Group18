@@ -6,6 +6,7 @@
 #include "BudgetService.h"
 #include "IncomeBudget.h"
 #include "ExpenseBudget.h"
+#include <sstream>
 using namespace std;
 
 class Program
@@ -185,7 +186,7 @@ private:
 	}
 
 	static void editTransaction() {
-		int id = -1, newAmount = -1;
+		int id = -1, newAmount = -1, recurring;
 		string strAmount, newNote, recurringInput;
 
 		while (isInvalidNumber(id) || !isValidTransaction(id))
@@ -216,14 +217,14 @@ private:
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 		// setting new values
-		if (!strAmount.empty()) {
-			transaction->setAmount(stoi(strAmount));
+		if (!strAmount.empty() && tryParseInt(strAmount, newAmount)) {
+			transaction->setAmount(newAmount);
 		}
 		if (!newNote.empty()) {
 			transaction->setNote(newNote);
 		}
-		if (!recurringInput.empty())
-			transaction->setRecurring(stoi(recurringInput));
+		if (!recurringInput.empty() && tryParseInt(recurringInput, recurring))
+			transaction->setRecurring(recurring);
 
 		transaction->printDetails();
 	}
@@ -410,6 +411,13 @@ private:
 
 	static bool isInvalidNumber(double input) {
 		return (cin.fail() || input < 0);
+	}
+
+	static bool tryParseInt(const string& str, int& output) {
+		std::istringstream iss(str);
+		iss >> output;
+
+		return iss.eof() && !iss.fail();
 	}
 #pragma endregion
 

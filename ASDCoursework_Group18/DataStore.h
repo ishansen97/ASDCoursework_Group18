@@ -1,7 +1,6 @@
 #pragma once
 #include "Category.h"
 #include "Transaction.h"
-#include "CategoryExpenseSummary.h"
 #include <vector>
 #include <map>
 #include <algorithm>
